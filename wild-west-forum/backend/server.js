@@ -72,7 +72,7 @@ app.get('/login', (req, res) => {
 })
 
 app.get('/comments', (req, res) => {
-    res.render('comments', { title: "Comments", user: req.user || null, year: new Date().getFullYear(), comments: comments })
+    res.render('comments', { title: "Comments", user: req.user || null, year: new Date().getFullYear(), comments: comments.slice().reverse() })
 })
 
 app.get('/comment/new', (req, res) => {

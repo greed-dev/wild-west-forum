@@ -37,7 +37,9 @@
                 <article class="comment-card">
                     <header class="comment-header">
                         <span class="comment-author">{{author}}</span>
-                        <time class="comment-timestamp">{{createdAt}}</time>
+                        <time class="comment-timestamp" data-timestamp="{{createdAt}}">
+                            {{formatDate createdAt}}
+                        </time>
                     </header>
                     <p class="comment-text">{{text}}</p>
                 </article>
@@ -61,6 +63,21 @@
     </main>
 
     {{> footer}}
+
+    <script>
+        document.querySelectorAll('.comment-timestamp').forEach(el => {
+            const date = new Date(el.getAttribute('data-timestamp'));
+            el.textContent = date.toLocaleString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true
+            });
+        });
+    </script>
+
 </body>
 
 </html>
