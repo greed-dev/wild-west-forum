@@ -4,11 +4,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
+    <title>{{title}} - Wild West Forum</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
     {{> header}}
+
+    <main id="main-content">
+        <div class="container">
+            <div class="comments-container">
+                <div class="page-header">
+                    <h1>Town Square</h1>
+                    <p>See what folks are saying around these parts</p>
+                </div>
+
+                <div class="page-actions">
+                    <h2>Recent Posts</h2>
+                    {{#if user}}
+                        <a href="/comment/new" class="btn btn-primary">
+                            Post a Comment
+                        </a>
+                    {{else}}
+                        <a href="/login" class="btn btn-secondary">
+                            Login to Post
+                        </a>
+                    {{/if}}
+                </div>
+
+                {{#if comments}}
+                    {{#each comments}}
+                        {{> comment-card}}
+                    {{/each}}
+                {{else}}
+                    <div class="comments-empty card">
+                        <p>No posts yet, partner. Be the first cowpoke to share your thoughts!</p>
+                        {{#if user}}
+                            <a href="/comment/new" class="btn btn-primary">
+                                Post the First Comment
+                            </a>
+                        {{else}}
+                            <a href="/login" class="btn btn-primary">
+                                Login to Post
+                            </a>
+                        {{/if}}
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+    </main>
+
+    {{> footer}}
 </body>
 
 </html>

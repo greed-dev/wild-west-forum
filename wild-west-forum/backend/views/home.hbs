@@ -4,11 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
+    <title>{{title}} - Wild West Forum</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
     {{> header}}
+
+    <main id="main-content">
+        <div class="container">
+            <section class="hero">
+                {{#if user}}
+                    <h1 class="hero-title">Welcome Back, {{user}}!</h1>
+                    <p class="hero-subtitle">
+                        Ready to mosey on over to the Town Square and see what folks are saying?
+                    </p>
+                    <div class="hero-actions">
+                        <a href="/comments" class="btn btn-primary">Visit Town Square</a>
+                        <a href="/comment/new" class="btn btn-secondary">Post a Comment</a>
+                    </div>
+                {{else}}
+                    <h1 class="hero-title">Wild West Forum</h1>
+                    <p class="hero-subtitle">
+                        A frontier of free speech where cowpokes gather to share their thoughts.<br>
+                        Pull up a chair and join the conversation!
+                    </p>
+                    <div class="hero-actions">
+                        <a href="/login" class="btn btn-primary">Saddle Up (Login)</a>
+                        <a href="/comments" class="btn btn-secondary">Browse Town Square</a>
+                    </div>
+                {{/if}}
+            </section>
+
+            <section class="card mt-lg">
+                <h2>About the Forum</h2>
+                <p>
+                    Welcome to the Wild West Forum, where the spirit of the frontier lives on!
+                    This here is a place where folks can speak their minds, share stories,
+                    and connect with other cowpokes from all walks of life.
+                </p>
+                <p>
+                    <strong>To get started:</strong>
+                </p>
+                <ul>
+                    <li>Create an account to join the discussion</li>
+                    <li>Browse the Town Square to read what others are saying</li>
+                    <li>Post your own comments and share your thoughts</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    {{> footer}}
 </body>
 
 </html>

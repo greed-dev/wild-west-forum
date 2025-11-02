@@ -1,5 +1,33 @@
-<header>
-    <nav>
-        <strong>Wild West Forum: {{title}}</strong>
-    </nav>
+{{!-- Skip to main content link for accessibility --}}
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <h1 class="site-title">
+                <a href="/">Wild West Forum</a>
+            </h1>
+
+            <nav aria-label="Main navigation">
+                <ul class="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/comments">Town Square</a></li>
+
+                    {{#if user}}
+                        {{!-- Links shown when user is logged in --}}
+                        <li><a href="/comment/new">Post Comment</a></li>
+                        <li class="user-info">Howdy, {{user}}!</li>
+                        <li>
+                            <form method="POST" action="/logout" style="display: inline; margin: 0;">
+                                <button type="submit" class="btn" style="padding: 8px 16px;">Logout</button>
+                            </form>
+                        </li>
+                    {{else}}
+                        {{!-- Links shown when user is not logged in --}}
+                        <li><a href="/login">Saddle Up (Login)</a></li>
+                    {{/if}}
+                </ul>
+            </nav>
+        </div>
+    </div>
 </header>

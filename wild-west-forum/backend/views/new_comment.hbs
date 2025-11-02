@@ -4,11 +4,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
+    <title>{{title}} - Wild West Forum</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
     {{> header}}
+
+    <main id="main-content">
+        <div class="container">
+            <div class="comments-container">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="card-title">Share Your Thoughts</h1>
+                    </div>
+
+                    {{#if user}}
+                        <p class="mb-md">
+                            Posting as: <strong>{{user}}</strong>
+                        </p>
+
+                        {{#if error}}
+                            <div class="error-message" role="alert">
+                                {{error}}
+                            </div>
+                        {{/if}}
+
+                        <form class="form" method="POST" action="/comment">
+                            <div class="form-group">
+                                <label for="text" class="form-label">Your Comment</label>
+                                <textarea
+                                    id="text"
+                                    name="text"
+                                    class="form-textarea"
+                                    required
+                                    aria-required="true"
+                                    placeholder="What's on your mind, partner?"
+                                    rows="6"
+                                ></textarea>
+                            </div>
+
+                            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                                <button type="submit" class="btn btn-primary">
+                                    Post to Town Square
+                                </button>
+                                <a href="/comments" class="btn btn-secondary">
+                                    Cancel
+                                </a>
+                            </div>
+                        </form>
+                    {{else}}
+                        <div class="error-message" role="alert">
+                            You must be logged in to post a comment.
+                        </div>
+                        <p>
+                            <a href="/login" class="btn btn-primary">Saddle Up to Post</a>
+                        </p>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {{> footer}}
 </body>
 
 </html>
