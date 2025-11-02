@@ -1,0 +1,27 @@
+services:
+    backend-express:
+        build: ./backend
+        container_name: backend-express
+        restart: unless-stopped
+
+        environment:
+            - NODE_ENV=PRODUCTION
+            - PORT=3000
+
+        networks:
+            - network
+
+    proxy:
+        build: ./proxy
+        container_name: proxy
+        restart: unless-stopped
+        ports:
+            - "80:80"
+        depends_on:
+            - backend-express
+        networks:
+            - network
+
+networks:
+    network:
+        driver: bridge
