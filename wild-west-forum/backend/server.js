@@ -124,6 +124,21 @@ app.post('/logout', (req, res) => {
 })
 
 app.post('/comment', (req, res) => {
+
+    const text = req.body.text;
+    const author = req.user;
+
+    if (!author) {
+        return res.redirect('/login');
+    }
+
+    comments.push({
+        author: author,
+        text: text,
+        createdAt: new Date()
+    });
+    
+    res.redirect('/comments');
 })
 
 app.listen(PORT, () => {

@@ -22,33 +22,39 @@
                 <div class="page-actions">
                     <h2>Recent Posts</h2>
                     {{#if user}}
-                        <a href="/comment/new" class="btn btn-primary">
-                            Post a Comment
-                        </a>
+                    <a href="/comment/new" class="btn btn-primary">
+                        Post a Comment
+                    </a>
                     {{else}}
-                        <a href="/login" class="btn btn-secondary">
-                            Login to Post
-                        </a>
+                    <a href="/login" class="btn btn-secondary">
+                        Login to Post
+                    </a>
                     {{/if}}
                 </div>
 
                 {{#if comments}}
-                    {{#each comments}}
-                        {{> comment-card}}
-                    {{/each}}
+                {{#each comments}}
+                <article class="comment-card">
+                    <header class="comment-header">
+                        <span class="comment-author">{{author}}</span>
+                        <time class="comment-timestamp">{{createdAt}}</time>
+                    </header>
+                    <p class="comment-text">{{text}}</p>
+                </article>
+                {{/each}}
                 {{else}}
-                    <div class="comments-empty card">
-                        <p>No posts yet, partner. Be the first cowpoke to share your thoughts!</p>
-                        {{#if user}}
-                            <a href="/comment/new" class="btn btn-primary">
-                                Post the First Comment
-                            </a>
-                        {{else}}
-                            <a href="/login" class="btn btn-primary">
-                                Login to Post
-                            </a>
-                        {{/if}}
-                    </div>
+                <div class="comments-empty card">
+                    <p>No posts yet, partner. Be the first cowpoke to share your thoughts!</p>
+                    {{#if user}}
+                    <a href="/comment/new" class="btn btn-primary">
+                        Post the First Comment
+                    </a>
+                    {{else}}
+                    <a href="/login" class="btn btn-primary">
+                        Login to Post
+                    </a>
+                    {{/if}}
+                </div>
                 {{/if}}
             </div>
         </div>
