@@ -16,7 +16,7 @@ services:
         container_name: proxy
         restart: unless-stopped
         ports:
-            - "80:80"
+            - "8080:80"
         depends_on:
             - backend-express
         networks:
